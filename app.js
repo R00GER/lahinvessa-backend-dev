@@ -16,14 +16,14 @@ const DB_USER = process.env.DB_USER;
 const DB_PASS = process.env.DB_PASS;
 const MONGODB_URI = process.env.MONGODB_URI
 
-mongoose.connect(process.env.MONGODB_URI || `mongodb+srv://${DB_USER}:${DB_PASS}@cluster0.mfcfk.mongodb.net/lahinvessaDB?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
-  console.log('connected to db!', process.env.MONGODB_URI);
-})
-
-
-// mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
-//   console.log('connected to db!', MONGODB_URI);
+// mongoose.connect(process.env.MONGODB_URI || `mongodb+srv://${DB_USER}:${DB_PASS}@cluster0.mfcfk.mongodb.net/lahinvessaDB?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+//   console.log('connected to db!', process.env.MONGODB_URI);
 // })
+
+
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+  console.log('connected to db!', MONGODB_URI);
+})
 
 app.use(cors());
 app.use(express.static('build'))
