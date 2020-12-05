@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 
 app.use('/api/register', registerRouter);
 app.use('/api/login', loginRouter);
-app.use('/api/locations', locationsRouter);
+app.use('https://herokuapp.lahinvessa.com/api/locations', locationsRouter);
 app.use('/api/locations/pending', pendingLocationsRouter);
 
 const PORT = process.env.PORT || 3001;
