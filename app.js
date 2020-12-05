@@ -30,7 +30,6 @@ app.use('/api/locations', locationsRouter);
 app.use('/api/locations/pending', pendingLocationsRouter);
 
 const PORT = process.env.PORT || 3001;
-console.log(PORT);
 
 app.listen(PORT, () => {
   console.log('listening to port 3001');
