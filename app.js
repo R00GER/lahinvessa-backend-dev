@@ -26,7 +26,6 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true 
 })
 
 app.use(cors());
-app.use(express.static('build'))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -36,6 +35,11 @@ app.use('/api/locations', locationsRouter);
 app.use('/api/locations/pending', pendingLocationsRouter);
 
 const PORT = process.env.PORT || 3001;
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static('build'))
+  app.use('*', express.static(path.join(__dirname, "build", 'index.html')))
+}
 
 app.listen(PORT, () => {
   console.log('listening to port', PORT);
