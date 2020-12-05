@@ -4,6 +4,7 @@ const User = require('../models/User');
 
 registerRouter.post('/', async (req, res) => {
   const { body } = req;
+  console.log('hitted');
 
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(body.password, saltRounds);
