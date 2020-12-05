@@ -20,6 +20,7 @@ mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@cluster0.mfcfk.mongodb.net
 })
 
 app.use(cors());
+app.use(express.static('build'))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
