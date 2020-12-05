@@ -16,7 +16,7 @@ const DB_USER = process.env.DB_USER;
 const DB_PASS = process.env.DB_PASS;
 
 mongoose.connect(process.env.MONGODB_URI || `mongodb+srv://${DB_USER}:${DB_PASS}@cluster0.mfcfk.mongodb.net/lahinvessaDB?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
-  console.log('connected to db!', MONGODB_URI);
+  console.log('connected to db!', process.env.MONGODB_URI);
 })
 
 app.use(cors());
