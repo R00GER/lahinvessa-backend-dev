@@ -5,7 +5,7 @@ const PendingLocation = require('../models/PendingLocation');
 locationsRouter.get('/', async (req, res) => {
   console.log('HITTTTTEEEDDD');
   const locations = await Location.find();
-  console.log(locations);
+  console.log('locations', locations);
   return res.json(locations);
 });
 
