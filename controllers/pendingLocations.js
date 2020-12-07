@@ -29,7 +29,8 @@ pendingLocationsRouter.post('/', async (req, res) => {
   }
 
   const newPendingLocation = new PendingLocation({ ...pendingLocation });
-  newPendingLocation.save();
+  await newPendingLocation.save();
+  console.log(newPendingLocation);
   res.json(newPendingLocation);
 });
 
