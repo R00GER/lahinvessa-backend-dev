@@ -4,20 +4,26 @@ const User = require('../models/User');
 
 registerRouter.post('/', async (req, res) => {
   const { body } = req;
-  console.log('hitted');
 
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(body.password, saltRounds);
 
-  const newUser = new User({
-    username: body.username,
-    email: body.email,
-    password: hashedPassword,
-  });
+  const usernameTaken = await User.findOne({ username: body.username })
 
-  const savedUser = await newUser.save();
+  if (!usernameTaken) {
+    const newUser = new User({
+      username: body.username,
+      email: body.email,
+      password: hashedPassword,
+    });
+  
+    const savedUser = await newUser.save();
+  
+    return res.json(savedUser);
+  } else {
+    return res.status(409).json({ err: 'username taken' })
+  }
 
-  res.json(savedUser);
 });
 
 module.exports = registerRouter;

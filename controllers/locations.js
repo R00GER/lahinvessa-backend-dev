@@ -37,10 +37,7 @@ locationsRouter.put('/:id', async (req, res) => {
     rating: body.rating / body.ratings,
   };
 
-  console.log(ratedLocation);
-
-  const savedRatedLocation = await Location.findOneAndUpdate(id, ratedLocation, { new: true });
-  console.log(savedRatedLocation);
+  const savedRatedLocation = await Location.findOneAndUpdate({ _id: id }, ratedLocation, { new: true });
   res.json(savedRatedLocation);
 });
 

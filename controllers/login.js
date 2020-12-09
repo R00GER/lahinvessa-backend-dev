@@ -5,13 +5,12 @@ const User = require('../models/User');
 
 loginRouter.post('/', async (req, res) => {
   const { body } = req;
-  console.log(body);
   const user = await User.findOne({ email: body.email });
 
   const encryptedPassword = await bcrypt.compare(body.password, user.password);
 
   if (!(user && encryptedPassword)) {
-    return res.json('invalid password/username');
+    return res.status(401).json({ err: 'invalid password or username' });
   }
 
   const userForToken = {
@@ -20,11 +19,9 @@ loginRouter.post('/', async (req, res) => {
     role: user.role,
   };
 
-  console.log(userForToken);
-
   const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: '1h' });
   
-  res.json({ token, id: user.id, username: user.username, role: user.role });
+  return res.json({ token, id: user.id, username: user.username, role: user.role });
 });
 
 module.exports = loginRouter;

@@ -8,6 +8,8 @@ const loginRouter = require('./controllers/login');
 const registerRouter = require('./controllers/register');
 const locationsRouter = require('./controllers/locations');
 const pendingLocationsRouter = require('./controllers/pendingLocations');
+const { errorHandler } = require('./errorhandler');
+require('express-async-errors')
 const cors = require('cors');
 
 require('dotenv').config();
@@ -18,14 +20,14 @@ const DB_USER = process.env.DB_USER;
 const DB_PASS = process.env.DB_PASS;
 const MONGODB_URI = process.env.MONGODB_URI
 
-// mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@cluster0.mfcfk.mongodb.net/lahinvessaDB?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
-//   console.log('connected to db!', process.env.MONGODB_URI);
-// })
-
-
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
-  console.log('connected to db!', MONGODB_URI);
+mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@cluster0.mfcfk.mongodb.net/lahinvessaDB?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+  console.log('connected to db!', process.env.MONGODB_URI);
 })
+
+
+// mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+//   console.log('connected to db!', MONGODB_URI);
+// })
 
 app.use(cors());
 app.use(cookieParser())
@@ -47,3 +49,5 @@ if (process.env.NODE_ENV === "production") {
 app.listen(PORT, () => {
   console.log('listening to port', PORT);
 });
+
+app.use(errorHandler);
