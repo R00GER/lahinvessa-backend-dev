@@ -24,7 +24,6 @@ const MONGODB_URI = process.env.MONGODB_URI
 //   console.log('connected to db!', process.env.MONGODB_URI);
 // })
 
-
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
   console.log('connected to db!', MONGODB_URI);
 })
