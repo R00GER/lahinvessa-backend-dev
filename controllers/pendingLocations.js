@@ -25,10 +25,10 @@ pendingLocationsRouter.post('/', async (req, res, next) => {
 
   try {
     decodedToken = jwt.verify(token, process.env.SECRET);
+    console.log(decodedToken);
   } catch (error) {
     if (error.name === 'TokenExpiredError') {
       return next(error);
-      // return res.status(440).json(error.name);
     } else {
       return res.status(500).json({ err: error, type: 'unknown error' });
     }
@@ -42,6 +42,7 @@ pendingLocationsRouter.post('/', async (req, res, next) => {
   if (decodedToken) {
     const newPendingLocation = new PendingLocation({ ...pendingLocation });
     const savedPendingLocation = await newPendingLocation.save();
+    console.log(savedPendingLocation);
     return res.json(savedPendingLocation);
   }
 });

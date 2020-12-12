@@ -4,11 +4,8 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 loginRouter.post('/', async (req, res) => {
-  console.log('HITTED');
   const { body } = req;
-  console.log(body);
   const user = await User.findOne({ email: body.email });
-  console.log(user);
 
   const encryptedPassword = await bcrypt.compare(body.password, user.password);
 
