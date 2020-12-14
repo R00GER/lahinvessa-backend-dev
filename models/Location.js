@@ -10,7 +10,7 @@ const locationSchema = new Schema({
   lat: Number,
   lng: Number,
   rating: Number,
-  ratings: Number,
+  ratings: Array,
 });
 
 locationSchema.set('toJSON', {

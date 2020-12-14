@@ -31,11 +31,14 @@ locationsRouter.put('/:id', async (req, res) => {
   const { id } = req.params;
   const { body } = req;
 
+  const sumOfRatings = body.ratings.reduce((acc, cur) => acc + cur);
 
   const ratedLocation = {
     ...body,
-    rating: body.rating / body.ratings,
+    rating: sumOfRatings / body.ratings.length,
   };
+
+  console.log(body.rating);
 
   const savedRatedLocation = await Location.findOneAndUpdate({ _id: id }, ratedLocation, { new: true });
   res.json(savedRatedLocation);
