@@ -1,7 +1,7 @@
-const redirectHttpRouter = require('express').Router();
+// const redirectHttpRouter = require('express').Router();
 
-redirectHttpRouter.get('/', (req, res) => {
-  res.redirect(`https://${req.headers.host}${req.url}`)
-});
+// redirectHttpRouter.get('/', (req, res) => {
+//   res.redirect(`https://${req.headers.host}${req.url}`)
+// });
 
-module.exports = redirectHttpRouter;
+// module.exports = redirectHttpRouter;
