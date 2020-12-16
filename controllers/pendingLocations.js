@@ -25,7 +25,6 @@ pendingLocationsRouter.post('/', async (req, res, next) => {
 
   try {
     decodedToken = jwt.verify(token, process.env.SECRET);
-    console.log(decodedToken);
   } catch (error) {
     if (error.name === 'TokenExpiredError') {
       return next(error);

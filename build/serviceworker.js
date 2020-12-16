@@ -5,6 +5,7 @@ const currentCache = {
   offline: `offline-cache${cacheVersion}`,
 };
 
+// install
 this.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(currentCache.offline).then((cache) => {
@@ -13,6 +14,7 @@ this.addEventListener('install', (event) => {
   );
 });
 
+// fetch from cache
 this.addEventListener('fetch', (event) => {
   if (
     event.request.mode === 'navigate' ||

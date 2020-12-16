@@ -38,10 +38,15 @@ locationsRouter.put('/:id', async (req, res) => {
     rating: sumOfRatings / body.ratings.length,
   };
 
-  console.log(body.rating);
-
   const savedRatedLocation = await Location.findOneAndUpdate({ _id: id }, ratedLocation, { new: true });
   res.json(savedRatedLocation);
 });
+
+locationsRouter.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+
+  const deletedLocation = await Location.findByIdAndDelete(id);
+  return res.json(deletedLocation);
+})
 
 module.exports = locationsRouter;
